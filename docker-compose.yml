@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+
+  php:
+    image: php:7.4-fpm-alpine
+
+    volumes:
+      - "./www:/var/www/html"
+
+  caddy:
+    image: caddy:alpine
+
+    ports:
+      - "8080:80"
+
+    volumes:
+      - "./www:/var/www/html"
+      - "./config/Caddyfile:/etc/caddy/Caddyfile"
+      - "./caddy_data:/data"
+      - "./caddy_config:/config"
